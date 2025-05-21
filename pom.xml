@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.fhdortmund.swt2</groupId>
+    <artifactId>tolles-projekt</artifactId>
+    <version>0.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Tolles Projekt</name>
+
+    <properties>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>javac-vs-mvn-example</module>
+        <module>proj1</module>
+        <module>proj2</module>
+        <module>test</module>
+
+    </modules>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.38</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.46.0</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>build-docker-image</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.46.0</version>
+
+                    <configuration>
+                        <!-- <imageName>${project.groupId}/${project.artifactId}</imageName>
+                        <baseImage>maven:3.9.9-eclipse-temurin-24-alpine</baseImage>
+                        <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                        <resources>
+                            <resource>
+                              <targetPath>/</targetPath>
+                              <directory>${project.build.directory}</directory>
+                              <include>${project.build.finalName}.jar</include>
+                            </resource>
+                         </resources> -->
+
+                        <images>
+                            <image>
+                                <alias>${project.artifactId}</alias>
+                                <name>${project.artifactId}</name>
+                                <build>
+                                    <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                                </build>
+                            </image>
+                        </images>
+                    </configuration>
+
+                    <executions>
+                        <execution>
+                            <id>build-docker-image</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
