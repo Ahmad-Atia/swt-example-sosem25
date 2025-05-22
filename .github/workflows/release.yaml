@@ -18,10 +18,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        jdk: [22]
+        jdk: [24]
         project:
           - proj1
           - proj2
+          - test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
