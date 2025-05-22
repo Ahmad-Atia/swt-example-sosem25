@@ -17,7 +17,7 @@ jobs:
         project:
           - proj1
           - proj2
-          - test
+          - proj3
           # This is a list of all projects that should be built and pushed.
           # YOU NEED TO UPDATE THIS LIST WHEN YOU ADD A NEW PROJECT AND WITH
           # THE CORRECT NAME OF THE PROJECT FOLDER.

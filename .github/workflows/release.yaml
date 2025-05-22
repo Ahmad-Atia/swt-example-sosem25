@@ -22,7 +22,7 @@ jobs:
         project:
           - proj1
           - proj2
-          - test
+          - proj3
     steps:
       - name: Checkout
         uses: actions/checkout@v4
