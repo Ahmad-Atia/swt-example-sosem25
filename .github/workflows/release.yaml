@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'proj1/**'
+      - 'proj2/**'
+      - 'proj3/**'
+      - 'eventservice/**'
+      - '.github/workflows/release.yaml'
 
 permissions:
   contents: read
@@ -18,11 +24,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        jdk: [24]
-        project:
-          - proj1
-          - proj2
-          - proj3
+        include:
+          - project: proj1
+            jdk: 24
+          - project: proj2
+            jdk: 24
+          - project: proj3
+            jdk: 24
+          - project: eventservice
+            jdk: 22
     steps:
       - name: Checkout
         uses: actions/checkout@v4

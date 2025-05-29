@@ -1,0 +1,53 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>8</x><y>44</y><w>210</w><h>180</h></coordinates><panel_attributes>User
+--
+-id: String
+-email: String
+-password: String
+-firstName: String
+-lastName: String
+-createdAt: Date
+-updatedAt: Date
+--
++validateEmail(): Boolean
++hashPassword(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>258</x><y>44</y><w>350</w><h>180</h></coordinates><panel_attributes>UserController
+--
+-userService: UserService
+-authService: AuthService
+--
++register(userData: UserDto): Response
++login(credentials: LoginDto): Response
++getProfile(userId: String): Response
++updateProfile(userId: String, data: UserDto): Response
++deleteUser(userId: String): Response</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>8</x><y>314</y><w>220</w><h>190</h></coordinates><panel_attributes>UserService
+--
+-userRepository: UserRepository
+-passwordEncoder: PasswordEncoder
+--
++createUser(user: User): User
++findById(id: String): User
++findByEmail(email: String): User
++updateUser(user: User): User
++deleteUser(id: String): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>258</x><y>334</y><w>250</w><h>190</h></coordinates><panel_attributes>UserRepository
+--
+-database: Database
+--
++save(user: User): User
++findById(id: String): User
++findByEmail(email: String): User
++update(user: User): User
++delete(id: String): void
++findAll(): List&lt;User&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>688</x><y>274</y><w>260</w><h>150</h></coordinates><panel_attributes>AuthService
+--
+-jwtUtils: JwtUtils
+-tokenBlacklist: TokenBlacklist
+--
++generateToken(user: User): String
++validateToken(token: String): Boolean
++logout(token: String): void
++refreshToken(token: String): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>598</x><y>484</y><w>200</w><h>100</h></coordinates><panel_attributes>UserDto
+--
++email: String
++firstName: String
++lastName: String
++password: String
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>108</x><y>214</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>218</x><y>364</y><w>60</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;30</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>214</y><w>30</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>598</x><y>114</y><w>110</w><h>260</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;240</additional_attributes></element></diagram>

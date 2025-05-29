@@ -18,10 +18,11 @@
     </properties>
 
     <modules>
-        <module>javac-vs-mvn-example</module>
+
         <module>proj1</module>
         <module>proj2</module>
-        <module>test</module>
+        <module>proj3</module>
+        <module>eventservice</module>
 
     </modules>
 

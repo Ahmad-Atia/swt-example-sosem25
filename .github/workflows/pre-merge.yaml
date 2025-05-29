@@ -2,6 +2,12 @@ name: Pre Merge Checks
 
 on:
   pull_request:
+    paths:
+      - 'proj1/**'
+      - 'proj2/**'
+      - 'proj3/**'
+      - 'eventservice/**'
+      - '.github/workflows/pre-merge.yaml'
 
 permissions:
     contents: read
@@ -13,16 +19,15 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        jdk: [24]
-        project:
-          - proj1
-          - proj2
-          - proj3
-          # This is a list of all projects that should be built and pushed.
-          # YOU NEED TO UPDATE THIS LIST WHEN YOU ADD A NEW PROJECT AND WITH
-          # THE CORRECT NAME OF THE PROJECT FOLDER.
-          # - project_one
-          # - project_two
+        include:
+          - project: proj1
+            jdk: 24
+          - project: proj2
+            jdk: 24
+          - project: proj3
+            jdk: 24
+          - project: eventservice
+            jdk: 22
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
